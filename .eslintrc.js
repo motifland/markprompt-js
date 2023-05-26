@@ -2,9 +2,9 @@ module.exports = {
   ignorePatterns: ['dist/'],
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
-    'plugin:import/typescript',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
@@ -18,6 +18,9 @@ module.exports = {
         project: ['examples/**/tsconfig.json', 'packages/**/tsconfig.json'],
       },
       node: true,
+    },
+    react: {
+      version: 'detect',
     },
   },
   plugins: ['@typescript-eslint'],
@@ -47,4 +50,19 @@ module.exports = {
     ],
     'import/no-unresolved': 'off',
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:import/typescript',
+        'plugin:prettier/recommended',
+      ],
+      parser: '@typescript-eslint/parser',
+      rules: {
+        '@typescript-eslint/no-namespace': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+      },
+    },
+  ],
 };

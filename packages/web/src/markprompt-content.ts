@@ -58,7 +58,7 @@ export class Markprompt extends LitElement {
 
   @property({ type: Object })
   idToRefMap: Record<
-    typeof this.references[number],
+    (typeof this.references)[number],
     { href: string; label: string }
   > = {};
 

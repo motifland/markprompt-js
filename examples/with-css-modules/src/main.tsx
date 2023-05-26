@@ -1,11 +1,12 @@
-import * as React from 'react';
-import { createRoot } from 'react-dom/client';
+import React from 'react';
+import { render } from 'react-dom';
 
 import App from './App';
 import './index.css';
 
-createRoot(document.getElementById('root') as HTMLElement).render(
+render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
+  document.getElementById('root')!,
 );

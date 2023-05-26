@@ -1,35 +1,18 @@
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { MarkpromptConfig } from '@markprompt/docusaurus-theme-search';
 import * as Markprompt from '@markprompt/react';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-import React, { useContext } from 'react';
+import React, { type ReactElement, useContext } from 'react';
 
-import styles from './markprompt.module.css';
+import styles from './index.module.css';
 
-function Component() {
+export default function SearchBar(): ReactElement {
+  const { siteConfig } = useDocusaurusContext();
+  const markpromptConfig = siteConfig.themeConfig
+    .markprompt as MarkpromptConfig;
+
   return (
-    <Markprompt.Root
-      projectKey={import.meta.env.VITE_PROJECT_API_KEY}
-      iDontKnowMessage="Sorry, I am not sure how to answer that."
-      placeholder="Ask me anything…"
-      loadingHeading="Fetching relevant pages…"
-      referencesHeading="Answer generated from the following pages:"
-      model="gpt-4"
-      promptTemplate={`You are a very enthusiastic company representative who loves to help people! Given the following sections from the documentation (preceded by a section id), answer the question using only that information, output in Markdown format. If you are unsure and the answer is not explicitly written in the documentation, say "{{I_DONT_KNOW}}".
-
-Context sections:
----
-{{CONTEXT}}
-
-Question: "{{PROMPT}}"
-
-Answer (including related code snippets if available):`}
-      temperature={0.1}
-      topP={1}
-      frequencyPenalty={0}
-      presencePenalty={0}
-      maxTokens={500}
-      sectionsMatchCount={10}
-      sectionsMatchThreshold={0.5}
-    >
+    <Markprompt.Root {...markpromptConfig}>
       <Markprompt.Trigger
         aria-label="Open Markprompt"
         className={styles.MarkpromptButton}
@@ -54,7 +37,7 @@ Answer (including related code snippets if available):`}
           <VisuallyHidden asChild>
             <Markprompt.Description>
               I can answer your questions about Markprompt’s client-side
-              libraries, onboarding, API’s and more.
+              libraries, onboarding, APIs and more.
             </Markprompt.Description>
           </VisuallyHidden>
 
@@ -185,5 +168,3 @@ const ChatIcon = ({ className }: { className?: string }) => (
     <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path>
   </svg>
 );
-
-export default Component;

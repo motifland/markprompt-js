@@ -1,10 +1,12 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
+  "access": "public",
+  "baseBranch": "main",
   "changelog": [
     "@changesets/changelog-github",
     { "repo": "motifland/markprompt-js" }
   ],
   "commit": false,
-  "access": "public",
-  "baseBranch": "main"
+  "privatePackages": false,
+  "updateInternalDependencies": "patch"
 }

@@ -1,6 +1,7 @@
 export {
   Context,
   Root,
+  type RootProps,
   Trigger,
   Portal,
   Overlay,

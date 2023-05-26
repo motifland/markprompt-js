@@ -6,6 +6,7 @@ node_modules
 
 # packing
 dist/
+.docusaurus/
 
 # testing
 /coverage
