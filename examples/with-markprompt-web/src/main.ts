@@ -1,4 +1,4 @@
-// import '@markprompt/css';
+import '@markprompt/css';
 import './style.css';
 
 import { markprompt } from '@markprompt/web';
