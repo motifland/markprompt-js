@@ -1,9 +1,4 @@
-import React, {
-  useMemo,
-  type ReactElement,
-  type KeyboardEventHandler,
-  useCallback,
-} from 'react';
+import React, { type ReactElement } from 'react';
 
 import { Answer } from './Answer.js';
 import { DEFAULT_MARKPROMPT_OPTIONS } from './constants.js';
