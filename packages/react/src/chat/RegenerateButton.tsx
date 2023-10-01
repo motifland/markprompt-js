@@ -1,7 +1,8 @@
-import React, { type ReactElement, useCallback } from 'react';
+import React, { type ReactElement } from 'react';
 
 import type { ChatViewMessage } from './store.js';
 import { ReloadIcon, StopIcon } from '../icons.js';
+import { ActionButton } from '../primitives/Actions.js';
 
 interface RegenerateButtonProps {
   abortSubmitChat?: () => void;
@@ -9,35 +10,33 @@ interface RegenerateButtonProps {
   regenerateLastAnswer: () => void;
 }
 
-export function RegenerateButton(props: RegenerateButtonProps): ReactElement {
+export function RegenerateButton(
+  props: RegenerateButtonProps,
+): ReactElement | null {
   const { abortSubmitChat, lastMessageState, regenerateLastAnswer } = props;
 
-  const handleClick = useCallback(() => {
-    if (lastMessageState === 'done' || lastMessageState === 'cancelled') {
-      regenerateLastAnswer();
-    } else {
-      abortSubmitChat?.();
-    }
-  }, [lastMessageState, regenerateLastAnswer, abortSubmitChat]);
+  if (lastMessageState === 'done' || lastMessageState === 'cancelled') {
+    return (
+      <ActionButton
+        type="button"
+        onClick={regenerateLastAnswer}
+        Icon={ReloadIcon}
+      >
+        Regenerate
+      </ActionButton>
+    );
+  }
 
-  return (
-    <button
-      className="MarkpromptRegenerateButton"
-      type="button"
-      onClick={handleClick}
-    >
-      {(lastMessageState === 'done' || lastMessageState === 'cancelled') && (
-        <>
-          <ReloadIcon className="MarkpromptSearchIcon" /> Regenerate
-        </>
-      )}
+  if (
+    lastMessageState === 'preload' ||
+    lastMessageState === 'streaming-answer'
+  ) {
+    return (
+      <ActionButton type="button" onClick={abortSubmitChat} Icon={StopIcon}>
+        Stop generating
+      </ActionButton>
+    );
+  }
 
-      {(lastMessageState === 'preload' ||
-        lastMessageState === 'streaming-answer') && (
-        <>
-          <StopIcon className="MarkpromptSearchIcon" /> Stop generating
-        </>
-      )}
-    </button>
-  );
+  return null;
 }

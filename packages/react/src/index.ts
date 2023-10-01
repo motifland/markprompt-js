@@ -39,12 +39,6 @@ export {
 } from './feedback/useFeedback.js';
 
 export {
-  usePrompt,
-  type UsePromptOptions,
-  type UsePromptResult,
-} from './prompt/usePrompt.js';
-
-export {
   useSearch,
   type SearchLoadingState,
   type UseSearchOptions,

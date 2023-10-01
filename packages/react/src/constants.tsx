@@ -190,12 +190,14 @@ export const DEFAULT_MARKPROMPT_OPTIONS = {
     label: 'Ask AI',
     tabLabel: 'Ask AI',
     placeholder: 'Ask AI…',
+    submitText: 'Ask AI',
     history: true,
   },
   prompt: {
     label: 'Ask AI',
     tabLabel: 'Ask AI',
     placeholder: 'Ask AI…',
+    submitText: 'Ask AI',
   },
   references: {
     loadingText: 'Fetching relevant pages…',

@@ -7,8 +7,12 @@ import {
 } from '@floating-ui/react';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import clsx from 'clsx';
-import { useSelect, type UseSelectProps } from 'downshift';
-import React, { type ReactNode } from 'react';
+import {
+  useSelect,
+  type UseSelectGetToggleButtonReturnValue,
+  type UseSelectProps,
+} from 'downshift';
+import React, { type ComponentType, type ReactNode } from 'react';
 
 interface Option {
   value: string;
@@ -21,7 +25,7 @@ interface SelectProps<T = Option> extends UseSelectProps<T> {
   itemToChildren?: (item: T | null) => ReactNode;
   itemToString: (item: T | null) => string;
   label?: ReactNode;
-  toggle?: ReactNode;
+  Toggle: ComponentType<UseSelectGetToggleButtonReturnValue>;
   menuClassName?: string;
   toggleClassName?: string;
   itemClassName?: string;
@@ -32,10 +36,9 @@ export function Select<T = Option>(props: SelectProps<T>): JSX.Element {
     className,
     itemClassName,
     menuClassName,
-    toggleClassName,
     label,
     items,
-    toggle,
+    Toggle,
     itemToChildren,
     itemToString,
     ...useSelectProps
@@ -68,13 +71,7 @@ export function Select<T = Option>(props: SelectProps<T>): JSX.Element {
         <label {...getLabelProps()}>{label}</label>
       </VisuallyHidden>
 
-      <button
-        type="button"
-        className={clsx('MarkpromptSelectToggle', toggleClassName)}
-        {...getToggleButtonProps({ ref: refs.setReference })}
-      >
-        {toggle}
-      </button>
+      <Toggle {...getToggleButtonProps({ ref: refs.setReference })} />
 
       <ul
         className={clsx('MarkpromptSelectMenu', menuClassName)}

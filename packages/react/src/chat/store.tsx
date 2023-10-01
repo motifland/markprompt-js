@@ -79,6 +79,7 @@ export interface CreateChatOptions {
   projectKey: string;
   persistChatHistory?: boolean;
   chatOptions?: Omit<SubmitChatOptions, 'signal'>;
+  isPrompt?: boolean;
 }
 
 /**
@@ -92,7 +93,8 @@ export const createChatStore = ({
   chatOptions,
   debug,
   persistChatHistory,
-  projectKey, // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  projectKey,
+  isPrompt, // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 }: CreateChatOptions) => {
   if (!projectKey) {
     throw new Error(
@@ -184,6 +186,11 @@ export const createChatStore = ({
           submitChat: (prompt: string) => {
             const id = crypto.randomUUID();
 
+            if (isPrompt) {
+              // create a new conversation for every prompt while we are in prompt mode
+              get().selectConversation(undefined);
+            }
+
             set((state) => {
               state.messages.push({
                 id,
@@ -268,7 +275,7 @@ export const createChatStore = ({
                 console.error(error);
               },
               {
-                conversationId: get().conversationId,
+                conversationId: isPrompt ? undefined : get().conversationId,
                 signal: controller.signal,
                 ...chatOptions,
               },
@@ -370,10 +377,11 @@ interface ChatProviderProps {
   children: ReactNode;
   debug?: boolean;
   projectKey: string;
+  isPrompt?: boolean;
 }
 
 export function ChatProvider(props: ChatProviderProps): JSX.Element {
-  const { chatOptions, children, debug, projectKey } = props;
+  const { chatOptions, children, debug, projectKey, isPrompt } = props;
 
   const store = useRef<ChatStore>();
 
@@ -383,6 +391,7 @@ export function ChatProvider(props: ChatProviderProps): JSX.Element {
       chatOptions,
       debug,
       persistChatHistory: chatOptions?.history,
+      isPrompt,
     });
   }
 

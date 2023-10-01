@@ -385,10 +385,14 @@
 }
 
 :where(.MarkpromptChatView .MarkpromptForm) {
-  position: relative;
   border-top: 1px solid var(--markprompt-border);
   border-bottom: 0;
   background-color: var(--markprompt-background);
+}
+
+:where(.MarkpromptChatView .MarkpromptForm),
+:where(.MarkpromptPromptView .MarkpromptForm) {
+  padding-right: 0.5rem;
 }
 
 :where(.MarkpromptMessageAnswerContainer) {
@@ -1516,10 +1520,46 @@
 :where(.MarkpromptChatActions) {
   display: flex;
   gap: 0.25rem;
-  position: absolute;
-  top: -1rem;
-  right: 1.25rem;
-  transform: translateY(-100%);
+  transition: flex 200ms ease-in-out;
+}
+
+:where(.MarkpromptActions) {
+  display: flex;
+  gap: 0.25rem;
+  transition: all 200ms ease-in-out;
+  align-items: center;
+}
+
+:where(.MarkpromptActionButton) {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--markprompt-border);
+  background-color: var(--markprompt-background);
+  color: var(--markprompt-foreground);
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: var(--markprompt-ring-offset-shadow, 0 0 #0000),
+    var(--markprompt-ring-shadow, 0 0 #0000), var(--markprompt-shadow);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+  overflow: hidden;
+}
+
+:where(.MarkpromptActionButton span) {
+  max-width: 0;
+  opacity: 0;
+}
+
+:where(.MarkpromptActionButton:hover span),
+:where(.MarkpromptActionButton:focus span) {
+  max-width: min-content;
+  opacity: 1;
+  margin-left: 0.25rem;
 }
 
 :where(.MarkpromptNewChatIcon) {
@@ -1530,25 +1570,6 @@
 
 :where(.MarkpromptSelect) {
   position: relative;
-}
-
-:where(.MarkpromptSelectToggle) {
-  all: unset;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--markprompt-background);
-  border: 1px solid var(--markprompt-border);
-  border-radius: 0.375rem;
-  color: var(--markprompt-mutedForeground);
-  cursor: pointer;
-  box-shadow: var(--markprompt-ring-offset-shadow, 0 0 #0000),
-    var(--markprompt-ring-shadow, 0 0 #0000), var(--markprompt-shadow);
-}
-
-:where(.MarkpromptSelectToggle:hover) {
-  background-color: var(--markprompt-muted);
 }
 
 :where(.MarkpromptSelectMenu) {

@@ -1,8 +1,26 @@
-import React from 'react';
+import type { UseSelectGetToggleButtonReturnValue } from 'downshift';
+import React, { forwardRef, type ForwardedRef } from 'react';
 
 import { selectProjectConversations, useChatStore } from './store.js';
 import { CounterClockwiseClockIcon, PlusIcon } from '../icons.js';
+import { ActionButton } from '../primitives/Actions.js';
 import { Select } from '../primitives/Select.js';
+
+const ToggleButton = forwardRef(function ToggleButton(
+  props: UseSelectGetToggleButtonReturnValue,
+  ref: ForwardedRef<HTMLButtonElement>,
+) {
+  return (
+    <ActionButton
+      ref={ref}
+      Icon={CounterClockwiseClockIcon}
+      type="button"
+      {...props}
+    >
+      History
+    </ActionButton>
+  );
+});
 
 export function ConversationSelect(): JSX.Element {
   const conversations = useChatStore(selectProjectConversations);
@@ -12,13 +30,7 @@ export function ConversationSelect(): JSX.Element {
     <Select
       className="MarkpromptConversationSelect"
       label="Select previous conversation"
-      toggle={
-        <CounterClockwiseClockIcon
-          aria-hidden
-          focusable={false}
-          className={'MarkpromptSearchIcon'}
-        />
-      }
+      Toggle={ToggleButton}
       items={[
         ...conversations.map(([conversationId, { messages }]) => ({
           value: conversationId,

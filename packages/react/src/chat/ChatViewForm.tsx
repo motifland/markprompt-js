@@ -16,7 +16,8 @@ import {
   selectProjectConversations,
   useChatStore,
 } from './store.js';
-import { SparklesIcon } from '../icons.js';
+import { SendIcon, SparklesIcon } from '../icons.js';
+import { Actions, ActionButton } from '../primitives/Actions.js';
 import * as BaseMarkprompt from '../primitives/headless.js';
 import type { MarkpromptOptions } from '../types.js';
 import type { View } from '../useViews.js';
@@ -105,7 +106,11 @@ export function ChatViewForm(props: ChatViewFormProps): ReactElement {
         }
       />
 
-      <div className="MarkpromptChatActions">
+      <Actions>
+        <ActionButton Icon={SendIcon} type="submit">
+          {chatOptions?.label}
+        </ActionButton>
+
         {lastMessageState && lastMessageState !== 'indeterminate' && (
           <RegenerateButton
             lastMessageState={lastMessageState}
@@ -115,7 +120,7 @@ export function ChatViewForm(props: ChatViewFormProps): ReactElement {
         )}
 
         {conversations.length > 0 && <ConversationSelect />}
-      </div>
+      </Actions>
     </BaseMarkprompt.Form>
   );
 }

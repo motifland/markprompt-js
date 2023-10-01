@@ -1,21 +1,11 @@
-import type { FileSectionReference } from '@markprompt/core';
-import * as AccessibleIcon from '@radix-ui/react-accessible-icon';
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  type ChangeEventHandler,
-  type FormEventHandler,
-  type ReactElement,
-} from 'react';
+import React, { type ReactElement } from 'react';
 
 import { Answer } from './Answer.js';
 import { References } from './References.js';
-import { usePrompt, type PromptLoadingState } from './usePrompt.js';
+import { ChatViewForm } from '../chat/ChatViewForm.js';
 import { DEFAULT_MARKPROMPT_OPTIONS } from '../constants.js';
 import { Feedback } from '../feedback/Feedback.js';
-import type { UseFeedbackResult } from '../feedback/useFeedback.js';
-import { SparklesIcon } from '../icons.js';
+import { ChatProvider, useChatStore, useFeedback } from '../index.js';
 import * as BaseMarkprompt from '../primitives/headless.js';
 import { type MarkpromptOptions } from '../types.js';
 import { useDefaults } from '../useDefaults.js';
@@ -51,150 +41,81 @@ export function PromptView(props: PromptViewProps): ReactElement {
     DEFAULT_MARKPROMPT_OPTIONS.references,
   );
 
-  const {
-    abort,
-    answer,
-    submitPrompt,
-    setPrompt,
-    prompt,
-    promptId,
-    state,
-    references,
-    submitFeedback,
-    abortFeedbackRequest,
-  } = usePrompt({
-    projectKey,
-    promptOptions,
-    feedbackOptions,
-    debug,
-  });
-
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    if (activeView && activeView !== 'prompt') abort();
-    return () => abort();
-  }, [activeView, abort]);
-
-  useEffect(() => {
-    // Bring form input in focus when activeView changes.
-    inputRef.current?.focus();
-  }, [activeView]);
-
-  const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
-    (event) => {
-      setPrompt(event.target.value);
-    },
-    [setPrompt],
-  );
-
-  const handleSubmit: FormEventHandler<HTMLFormElement> = useCallback(
-    async (event) => {
-      event.preventDefault();
-      submitPrompt();
-    },
-    [submitPrompt],
-  );
-
   return (
-    <div className="MarkpromptPromptView">
-      <BaseMarkprompt.Form className="MarkpromptForm" onSubmit={handleSubmit}>
-        <BaseMarkprompt.Prompt
-          ref={inputRef}
-          className="MarkpromptPrompt"
-          name="markprompt-prompt"
-          onChange={handleChange}
-          value={prompt}
-          type="text"
-          placeholder={
-            promptOptions?.placeholder ??
-            DEFAULT_MARKPROMPT_OPTIONS.prompt!.placeholder!
-          }
-          labelClassName="MarkpromptPromptLabel"
-          label={
-            <AccessibleIcon.Root
-              label={
-                promptOptions?.label ??
-                DEFAULT_MARKPROMPT_OPTIONS.prompt!.label!
-              }
-            >
-              <SparklesIcon className="MarkpromptSearchIcon" />
-            </AccessibleIcon.Root>
-          }
+    <ChatProvider
+      chatOptions={promptOptions}
+      debug={debug}
+      projectKey={projectKey}
+      isPrompt
+    >
+      <div className="MarkpromptPromptView">
+        <ChatViewForm chatOptions={promptOptions} activeView={activeView} />
+
+        <PromptAndAnswer
+          projectKey={projectKey}
+          feedbackOptions={feedbackOptions}
+          onDidSelectReference={onDidSelectReference}
+          referencesOptions={referencesOptions}
         />
-      </BaseMarkprompt.Form>
-
-      <AnswerContainer
-        abortFeedbackRequest={abortFeedbackRequest}
-        answer={answer}
-        feedbackOptions={feedbackOptions}
-        onDidSelectReference={onDidSelectReference}
-        promptId={promptId}
-        references={references}
-        referencesOptions={referencesOptions}
-        state={state}
-        submitFeedback={(feedback, promptId) => {
-          submitFeedback(feedback, promptId);
-
-          feedbackOptions.onFeedbackSubmit?.(
-            feedback,
-            [
-              {
-                answer,
-                id: promptId!,
-                prompt,
-                promptId,
-                references,
-                state,
-              },
-            ],
-            promptId,
-          );
-        }}
-      />
-    </div>
+      </div>
+    </ChatProvider>
   );
 }
 
-interface AnswerContainerProps {
-  answer: string;
+interface PromptAndAnswerProps {
+  projectKey: string;
   feedbackOptions?: MarkpromptOptions['feedback'];
   onDidSelectReference?: () => void;
-  references: FileSectionReference[];
   referencesOptions: MarkpromptOptions['references'];
-  state: PromptLoadingState;
-  submitFeedback: UseFeedbackResult['submitFeedback'];
-  abortFeedbackRequest: UseFeedbackResult['abort'];
-  promptId?: string;
 }
 
-function AnswerContainer(props: AnswerContainerProps): ReactElement {
+function PromptAndAnswer(props: PromptAndAnswerProps): ReactElement {
   const {
-    abortFeedbackRequest,
-    answer,
+    projectKey,
     feedbackOptions,
     onDidSelectReference,
-    promptId,
-    references,
     referencesOptions,
-    state,
-    submitFeedback,
   } = props;
 
+  const message = useChatStore(
+    (state) =>
+      state.messages[0] ?? {
+        answer: '',
+        prompt: '',
+        references: [],
+        state: 'indeterminate',
+      },
+  );
+
+  const { submitFeedback, abort: abortFeedbackRequest } = useFeedback({
+    projectKey,
+    feedbackOptions,
+  });
+
   return (
-    <div className="MarkpromptAnswerContainer" data-loading-state={state}>
+    <div
+      className="MarkpromptAnswerContainer"
+      data-loading-state={message.state}
+    >
       <BaseMarkprompt.AutoScroller
         className="MarkpromptAutoScroller"
-        scrollTrigger={answer}
+        scrollTrigger={message.answer}
       >
-        <Answer answer={answer} state={state} />
-        {feedbackOptions?.enabled && state === 'done' && (
+        <Answer answer={message.answer} state={message.state} />
+        {feedbackOptions?.enabled && message.state === 'done' && (
           <Feedback
             variant="text"
             className="MarkpromptPromptFeedback"
-            submitFeedback={submitFeedback}
+            submitFeedback={(feedback) => {
+              submitFeedback(feedback, message.promptId);
+              feedbackOptions.onFeedbackSubmit?.(
+                feedback,
+                [message],
+                message.promptId,
+              );
+            }}
             abortFeedbackRequest={abortFeedbackRequest}
-            promptId={promptId}
+            promptId={message.promptId}
             heading={feedbackOptions.heading}
           />
         )}
@@ -206,8 +127,8 @@ function AnswerContainer(props: AnswerContainerProps): ReactElement {
         loadingText={referencesOptions?.loadingText}
         heading={referencesOptions?.heading}
         onDidSelectReference={onDidSelectReference}
-        references={references}
-        state={state}
+        references={message.references ?? []}
+        state={message.state}
         transformReferenceId={referencesOptions?.transformReferenceId}
       />
     </div>

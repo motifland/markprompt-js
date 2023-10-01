@@ -251,16 +251,16 @@ type AnswerProps = Omit<
   ComponentPropsWithoutRef<typeof Markdown>,
   'children'
 > & {
-  answer: string;
+  answer?: string;
 };
 /**
  * Render the markdown answer from the Markprompt API.
  */
 function Answer(props: AnswerProps): ReactElement {
-  const { answer, remarkPlugins = [remarkGfm], ...rest } = props;
+  const { answer = '', remarkPlugins = [remarkGfm], ...rest } = props;
   return (
     <Markdown {...rest} remarkPlugins={remarkPlugins}>
-      {answer ?? ''}
+      {answer}
     </Markdown>
   );
 }

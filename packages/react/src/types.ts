@@ -137,6 +137,11 @@ export interface MarkpromptOptions {
      **/
     placeholder?: string;
     /**
+     * Text for the submit button
+     * @default "Ask AI"
+     */
+    submitText?: string;
+    /**
      * Show sender info, like avatar
      * @default true
      **/
@@ -155,6 +160,14 @@ export interface MarkpromptOptions {
    */
   prompt?: SubmitChatOptions & {
     /**
+     * Enable prompt history features
+     * - enable saving promtp history to local storage
+     * - show prompt history UI
+     * - get back to prompt answers later
+     * @default true
+     */
+    history?: boolean;
+    /**
      * Label for the prompt input
      * @default "Ask AI"
      **/
@@ -169,6 +182,11 @@ export interface MarkpromptOptions {
      * @default "Ask AI…"
      **/
     placeholder?: string;
+    /**
+     * Text for the submit button
+     * @default "Ask AI"
+     */
+    submitText?: string;
   };
   references?: {
     /**
