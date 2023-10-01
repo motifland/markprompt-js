@@ -95,7 +95,7 @@ describe('ChatView', () => {
 
   it('renders', () => {
     render(<ChatView projectKey="test-key" />);
-    expect(screen.getByText('Ask AI')).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
   });
 
   it('throws an error if no project key is provided', () => {
