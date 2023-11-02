@@ -1,24 +1,27 @@
-import { type PluginModule } from '@docusaurus/types';
+import {
+  type PluginModule,
+  type ThemeConfigValidationContext,
+} from '@docusaurus/types';
 import type { MarkpromptProps } from '@markprompt/react';
 
-declare namespace themeSearchMarkprompt {
-  export type MarkpromptConfig = MarkpromptProps;
+export type MarkpromptConfig = MarkpromptProps;
 
-  export interface ThemeConfig {
-    markprompt?: MarkpromptConfig;
-  }
+export interface ThemeConfig {
+  markprompt?: MarkpromptConfig;
 }
 
 // eslint-disable-next-line no-redeclare
-const themeSearchMarkprompt: PluginModule = () => ({
+const themeSearchMarkprompt: PluginModule = async () => ({
   name: '@markprompt/docusaurus-theme-search',
   getThemePath: () => '../dist/theme',
   getTypeScriptThemePath: () => '../src/theme',
   getSwizzleComponentList: () => ['SearchBar'],
 });
 
-themeSearchMarkprompt.validateThemeConfig = (data) => {
-  return data.themeConfig;
+export const validateThemeConfig = (
+  context: ThemeConfigValidationContext<ThemeConfig>,
+): ThemeConfig => {
+  return context.themeConfig;
 };
 
 export default themeSearchMarkprompt;

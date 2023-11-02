@@ -1,21 +1,6 @@
 {
-  "references": [{ "path": "../../packages/docusaurus-theme-search" }],
+  "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "baseUrl": ".",
-    "composite": true,
-    "module": "node16",
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "@site/*": ["./*"]
-    },
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "es2021",
-    "types": [
-      "node",
-      "@docusaurus/module-type-aliases",
-      "@docusaurus/theme-classic"
-    ]
+    "baseUrl": "."
   }
 }

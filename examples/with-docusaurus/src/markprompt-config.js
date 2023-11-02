@@ -1,5 +1,7 @@
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+
 // Custom link mapping functions: https://markprompt.com/docs#link-mapping
-if (typeof window !== 'undefined') {
+if (ExecutionEnvironment.canUseDOM) {
   window.markpromptConfigExtras = {
     references: {
       // Example link mapping for references:
