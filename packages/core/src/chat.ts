@@ -141,8 +141,9 @@ export async function submitChat(
   }
 
   try {
-    const { apiUrl, signal, ...resolvedOptions } = defaults(
-      { ...options },
+    const { signal, ...cloneableOptions } = options;
+    const { apiUrl, ...resolvedOptions } = defaults(
+      { ...cloneableOptions },
       DEFAULT_SUBMIT_CHAT_OPTIONS,
     );
 
@@ -156,7 +157,7 @@ export async function submitChat(
         messages,
         ...resolvedOptions,
       }),
-      signal: signal,
+      signal,
     });
 
     if (!res.ok || !res.body) {

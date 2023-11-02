@@ -1,6 +1,6 @@
 import type { PromptFeedback } from '@markprompt/core';
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
-import React, {
+import {
   useState,
   type ReactElement,
   type ComponentPropsWithoutRef,

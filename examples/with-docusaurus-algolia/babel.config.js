@@ -1,3 +1,5 @@
-module.exports = {
-  presets: [require.resolve('@docusaurus/core/lib/babel/preset')],
+import preset from '@docusaurus/core/lib/babel/preset.js';
+
+export default {
+  presets: [preset],
 };

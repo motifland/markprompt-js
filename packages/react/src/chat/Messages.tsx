@@ -1,4 +1,4 @@
-import React, { type ReactElement } from 'react';
+import { type ReactElement } from 'react';
 
 import { MessageAnswer } from './MessageAnswer.js';
 import { MessagePrompt } from './MessagePrompt.js';

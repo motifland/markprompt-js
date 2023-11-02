@@ -1,4 +1,4 @@
-import React, { type ComponentPropsWithoutRef, type ReactElement } from 'react';
+import { type ComponentPropsWithoutRef, type ReactElement } from 'react';
 
 const ChatIcon = (props: ComponentPropsWithoutRef<'svg'>): ReactElement => (
   <svg

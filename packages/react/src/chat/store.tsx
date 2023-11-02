@@ -5,7 +5,7 @@ import {
   type FileSectionReference,
   type SubmitChatOptions,
 } from '@markprompt/core';
-import React, {
+import {
   createContext,
   useContext,
   useRef,

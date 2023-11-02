@@ -549,8 +549,7 @@
   -ms-overflow-style: none;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
   padding-bottom: 3rem;
 }
 

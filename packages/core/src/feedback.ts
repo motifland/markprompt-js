@@ -35,10 +35,8 @@ export async function submitFeedback(
     throw new Error('A projectKey is required.');
   }
 
-  const resolvedOptions = defaults(
-    { ...options },
-    DEFAULT_SUBMIT_FEEDBACK_OPTIONS,
-  );
+  const { signal, apiUrl } = options ?? {};
+  const resolvedOptions = defaults({ apiUrl }, DEFAULT_SUBMIT_FEEDBACK_OPTIONS);
 
   const params = new URLSearchParams({
     projectKey,
@@ -51,7 +49,7 @@ export async function submitFeedback(
         'Content-Type': 'application/json',
       }),
       body: JSON.stringify(feedback),
-      signal: resolvedOptions?.signal,
+      signal,
     });
 
     if (!response.ok) {

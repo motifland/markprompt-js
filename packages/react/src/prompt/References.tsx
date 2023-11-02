@@ -1,5 +1,5 @@
 import type { FileSectionReference } from '@markprompt/core';
-import React, { useCallback, useMemo, type ReactElement } from 'react';
+import { useCallback, useMemo, type ReactElement } from 'react';
 
 import type { PromptLoadingState } from './usePrompt.js';
 import { DEFAULT_MARKPROMPT_OPTIONS } from '../constants.js';

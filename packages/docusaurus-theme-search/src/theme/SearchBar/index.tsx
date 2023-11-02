@@ -6,7 +6,7 @@ import {
   type MarkpromptProps,
   openMarkprompt,
 } from '@markprompt/react';
-import React, { useEffect, type ReactElement, useState } from 'react';
+import { useEffect, type ReactElement, useState } from 'react';
 
 export default function SearchBar(): ReactElement {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

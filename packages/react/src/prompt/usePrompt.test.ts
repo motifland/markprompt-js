@@ -1,11 +1,5 @@
 import { DEFAULT_SUBMIT_CHAT_OPTIONS } from '@markprompt/core';
-import { waitFor } from '@testing-library/react';
-import {
-  act,
-  renderHook,
-  suppressErrorOutput,
-  cleanup,
-} from '@testing-library/react-hooks';
+import { waitFor, act, renderHook } from '@testing-library/react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import {
@@ -60,7 +54,6 @@ describe('usePrompt', () => {
     response = [];
     status = 200;
     server.resetHandlers();
-    cleanup();
     vi.resetAllMocks();
   });
 
@@ -104,14 +97,11 @@ describe('usePrompt', () => {
   });
 
   it('should throw when instantiated without projectKey', async () => {
-    const restoreConsole = suppressErrorOutput();
-
     try {
       const { result } = renderHook(() => usePrompt({ projectKey: '' }));
       expect(result.error).toBeInstanceOf(Error);
-    } finally {
-      restoreConsole();
-    }
+      // eslint-disable-next-line no-empty
+    } catch {}
   });
 
   it('should not do requests when submitting without prompt', async () => {
@@ -138,24 +128,18 @@ describe('usePrompt', () => {
   });
 
   it('should log an error to console when an error is thrown', async () => {
-    const restoreConsole = suppressErrorOutput();
+    const { result } = renderHook(() =>
+      usePrompt({ projectKey: 'TEST_PROJECT_KEY' }),
+    );
 
-    try {
-      const { result } = renderHook(() =>
-        usePrompt({ projectKey: 'TEST_PROJECT_KEY' }),
-      );
+    act(() => result.current.setPrompt('How much is 1+2?'));
 
-      act(() => result.current.setPrompt('How much is 1+2?'));
+    response = { error: 'test' };
+    status = 500;
 
-      response = { error: 'test' };
-      status = 500;
+    await act(() => result.current.submitPrompt());
 
-      await act(() => result.current.submitPrompt());
-
-      expect(consoleMock).toHaveBeenCalled();
-    } finally {
-      restoreConsole();
-    }
+    expect(consoleMock).toHaveBeenCalled();
   });
 
   it('should ignore AbortErrors', async () => {

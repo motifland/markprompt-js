@@ -3,8 +3,7 @@ import {
   type SearchResult,
   type AlgoliaDocSearchHit,
 } from '@markprompt/core';
-import { waitFor } from '@testing-library/react';
-import { renderHook, cleanup, act } from '@testing-library/react-hooks';
+import { waitFor, renderHook, act } from '@testing-library/react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import {
@@ -38,7 +37,6 @@ afterEach(() => {
   algoliaHits = 0;
   status = 200;
   server.resetHandlers();
-  cleanup();
   vi.resetAllMocks();
 });
 

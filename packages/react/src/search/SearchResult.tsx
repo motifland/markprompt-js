@@ -1,4 +1,4 @@
-import React, { Fragment, forwardRef, memo } from 'react';
+import { Fragment, forwardRef, memo } from 'react';
 
 import { FileTextIcon, HashIcon } from '../icons.js';
 import { type SearchResultProps as BaseSearchResultProps } from '../index.js';

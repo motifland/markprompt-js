@@ -8,7 +8,7 @@ import {
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import clsx from 'clsx';
 import { useSelect, type UseSelectProps } from 'downshift';
-import React, { type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 interface Option {
   value: string;

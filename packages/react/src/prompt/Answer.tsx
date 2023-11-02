@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { type ReactElement } from 'react';
+import { type ReactElement } from 'react';
 
 import type { PromptLoadingState } from './usePrompt.js';
 import type { ChatLoadingState } from '../chat/store.js';

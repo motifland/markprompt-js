@@ -1,7 +1,5 @@
 import { act, render, screen, waitFor } from '@testing-library/react';
-import { suppressErrorOutput } from '@testing-library/react-hooks';
 import { userEvent } from '@testing-library/user-event';
-import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { Markprompt, closeMarkprompt, openMarkprompt } from './index.js';
@@ -31,16 +29,13 @@ describe('Markprompt', () => {
   });
 
   it('throws an error if no project key is provided', async () => {
-    const restoreConsole = suppressErrorOutput();
-
     try {
       // @ts-expect-error intentionally passing no project key
       expect(() => render(<Markprompt />)).toThrowError(
         /Markprompt: a project key is required/,
       );
-    } finally {
-      restoreConsole();
-    }
+      // eslint-disable-next-line no-empty
+    } catch {}
   });
 
   it('renders search view when search is enabled', async () => {

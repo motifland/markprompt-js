@@ -1,6 +1,6 @@
 import type { FileSectionReference } from '@markprompt/core';
 import * as AccessibleIcon from '@radix-ui/react-accessible-icon';
-import React, {
+import {
   useCallback,
   useEffect,
   useRef,

@@ -1,7 +1,7 @@
 import '@markprompt/css';
 
 import { Markprompt, openMarkprompt } from '@markprompt/react';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 import styles from './App.module.css';
 

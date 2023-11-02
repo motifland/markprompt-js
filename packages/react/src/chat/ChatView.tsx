@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ChatViewForm } from './ChatViewForm.js';
 import { ConversationSidebar } from './ConversationSidebar.js';
 import { Messages } from './Messages.js';

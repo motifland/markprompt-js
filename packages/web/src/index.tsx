@@ -6,7 +6,6 @@ import {
   type ChatViewProps,
   ChatView,
 } from '@markprompt/react';
-import React from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 
 function getHTMLElement(

@@ -1,4 +1,4 @@
-import React, { type JSXElementConstructor, type ReactElement } from 'react';
+import { type JSXElementConstructor, type ReactElement } from 'react';
 
 import type { DefaultViewProps } from '../types.js';
 

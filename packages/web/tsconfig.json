@@ -19,7 +19,7 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "verbatimModuleSyntax": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "outDir": "dist/",
     "rootDir": "./src",
     "paths": {

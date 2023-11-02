@@ -1,5 +1,5 @@
 import { Markprompt } from '@markprompt/react';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 export default function IndexPage(): ReactElement {
   return (

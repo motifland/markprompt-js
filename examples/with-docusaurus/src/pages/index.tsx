@@ -1,5 +1,5 @@
 import Layout from '@theme/Layout';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 import styles from './index.module.css';
 

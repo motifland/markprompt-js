@@ -1,5 +1,5 @@
 import * as AccessibleIcon from '@radix-ui/react-accessible-icon';
-import React, {
+import {
   useEffect,
   type Dispatch,
   type ReactElement,

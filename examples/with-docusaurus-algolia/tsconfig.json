@@ -5,7 +5,7 @@
     "composite": true,
     "module": "node16",
     "isolatedModules": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "paths": {
       "@site/*": ["./*"]
     },

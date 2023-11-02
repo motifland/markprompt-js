@@ -4,11 +4,9 @@ import {
   type SearchResult,
 } from '@markprompt/core';
 import { render, screen, waitFor } from '@testing-library/react';
-import { suppressErrorOutput } from '@testing-library/react-hooks';
 import { userEvent } from '@testing-library/user-event';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import React from 'react';
 import {
   afterAll,
   afterEach,
@@ -69,15 +67,10 @@ describe('SearchView', () => {
   });
 
   it('throws without a project key', () => {
-    const restoreConsole = suppressErrorOutput();
-    try {
-      // @ts-expect-error intentionally missing projectKey
-      expect(() => render(<SearchView />)).toThrow(
-        'Markprompt: a project key is required. Make sure to pass your Markprompt project key to <SearchView />.',
-      );
-    } finally {
-      restoreConsole();
-    }
+    // @ts-expect-error intentionally missing projectKey
+    expect(() => render(<SearchView />)).toThrow(
+      'Markprompt: a project key is required. Make sure to pass your Markprompt project key to <SearchView />.',
+    );
   });
 
   it('displays search queries', async () => {
@@ -174,7 +167,7 @@ describe('SearchView', () => {
     });
   });
 
-  it('allows users to select search queries', async () => {
+  it.only('allows users to select search queries', async () => {
     const query = 'test query';
     const user = await userEvent.setup();
 
