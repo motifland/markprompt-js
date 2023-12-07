@@ -17,8 +17,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.34",
-    "@types/react-dom": "^18.2.14",
+    "@types/react": "^18.2.42",
+    "@types/react-dom": "^18.2.17",
     "vite": "^4.5.0"
   }
 }
