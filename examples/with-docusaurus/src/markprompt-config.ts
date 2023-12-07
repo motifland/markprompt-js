@@ -1,4 +1,11 @@
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import { MarkpromptConfig } from '@markprompt/docusaurus-theme-search';
+
+declare global {
+  interface Window {
+    markpromptConfigExtras?: Partial<MarkpromptConfig>;
+  }
+}
 
 // Custom link mapping functions: https://markprompt.com/docs#link-mapping
 if (ExecutionEnvironment.canUseDOM) {

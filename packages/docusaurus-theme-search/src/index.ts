@@ -15,8 +15,11 @@ const themeSearchMarkprompt: PluginModule = async () => ({
   name: '@markprompt/docusaurus-theme-search',
   getThemePath: () => '../dist/theme',
   getTypeScriptThemePath: () => '../src/theme',
-  getSwizzleComponentList: () => ['SearchBar'],
 });
+
+export function getSwizzleComponentList(): string[] {
+  return ['SearchBar'];
+}
 
 export const validateThemeConfig = (
   context: ThemeConfigValidationContext<ThemeConfig>,
