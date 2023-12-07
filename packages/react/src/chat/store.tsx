@@ -11,6 +11,7 @@ import {
   useRef,
   type ReactNode,
   useEffect,
+  type ReactElement,
 } from 'react';
 import { createStore, useStore } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
@@ -405,7 +406,7 @@ interface ChatProviderProps {
   projectKey: string;
 }
 
-export function ChatProvider(props: ChatProviderProps): JSX.Element {
+export function ChatProvider(props: ChatProviderProps): ReactElement {
   const { chatOptions, children, debug, projectKey } = props;
 
   const store = useRef<ChatStore>();

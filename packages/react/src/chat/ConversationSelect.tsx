@@ -1,8 +1,10 @@
+import type { ReactElement } from 'react';
+
 import { selectProjectConversations, useChatStore } from './store.js';
 import { CounterClockwiseClockIcon, PlusIcon } from '../icons.js';
 import { Select } from '../primitives/Select.js';
 
-export function ConversationSelect(): JSX.Element {
+export function ConversationSelect(): ReactElement {
   const conversations = useChatStore(selectProjectConversations);
   const selectConversation = useChatStore((state) => state.selectConversation);
 

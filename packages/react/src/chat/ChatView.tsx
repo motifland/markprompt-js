@@ -1,3 +1,5 @@
+import type { ReactElement } from 'react';
+
 import { ChatViewForm } from './ChatViewForm.js';
 import { ConversationSidebar } from './ConversationSidebar.js';
 import { Messages } from './Messages.js';
@@ -17,7 +19,7 @@ export interface ChatViewProps {
   referencesOptions?: MarkpromptOptions['references'];
 }
 
-export function ChatView(props: ChatViewProps): JSX.Element {
+export function ChatView(props: ChatViewProps): ReactElement {
   const { activeView, debug, projectKey } = props;
 
   if (!projectKey) {

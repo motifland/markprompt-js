@@ -6,7 +6,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { type MarkpromptConfig } from '@markprompt/docusaurus-theme-search';
 import type SearchBarType from '@theme/SearchBar';
 import SearchBar from '@theme-original/SearchBar';
-import { Suspense, lazy } from 'react';
+import { ReactElement, Suspense, lazy } from 'react';
 
 // import Markprompt lazily as Docusaurus does not currently support ESM
 const Markprompt = lazy(() => {
@@ -17,7 +17,7 @@ const Markprompt = lazy(() => {
 
 type Props = WrapperProps<typeof SearchBarType>;
 
-export default function SearchBarWrapper(props: Props): JSX.Element {
+export default function SearchBarWrapper(props: Props): ReactElement {
   const { siteConfig } = useDocusaurusContext();
   const { projectKey, ...config } = siteConfig.themeConfig
     .markprompt as MarkpromptConfig;

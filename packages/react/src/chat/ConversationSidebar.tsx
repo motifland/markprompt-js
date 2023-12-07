@@ -1,8 +1,10 @@
+import type { ReactElement } from 'react';
+
 import { selectProjectConversations, useChatStore } from './store.js';
 import { PlusIcon } from '../icons.js';
 import { markdownToString } from '../utils.js';
 
-export function ConversationSidebar(): JSX.Element {
+export function ConversationSidebar(): ReactElement {
   const selectedConversationId = useChatStore((state) => state.conversationId);
   const conversations = useChatStore(selectProjectConversations);
   const selectConversation = useChatStore((state) => state.selectConversation);

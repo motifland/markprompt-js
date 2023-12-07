@@ -8,7 +8,7 @@ import {
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import clsx from 'clsx';
 import { useSelect, type UseSelectProps } from 'downshift';
-import { type ReactNode } from 'react';
+import { type ReactElement, type ReactNode } from 'react';
 
 interface Option {
   value: string;
@@ -27,7 +27,7 @@ interface SelectProps<T = Option> extends UseSelectProps<T> {
   itemClassName?: string;
 }
 
-export function Select<T = Option>(props: SelectProps<T>): JSX.Element {
+export function Select<T = Option>(props: SelectProps<T>): ReactElement {
   const {
     className,
     itemClassName,
