@@ -3,6 +3,9 @@ export {
   type SubmitChatOptions,
   type ChatMessage,
   DEFAULT_SUBMIT_CHAT_OPTIONS,
+  submitChatGenerator,
+  type SubmitChatGeneratorOptions,
+  DEFAULT_SUBMIT_CHAT_GENERATOR_OPTIONS,
 } from './chat.js';
 
 export {
@@ -20,10 +23,14 @@ export {
 } from './search.js';
 
 export {
+  OPENAI_CHAT_COMPLETIONS_MODELS,
+  OPENAI_COMPLETIONS_MODELS,
+  OPENAI_EMBEDDINGS_MODEL,
   type AlgoliaDocSearchHit,
   type AlgoliaDocSearchResultsResponse,
   type FileReferenceFileData,
   type FileSectionReference,
+  type FileSectionReferenceSectionData,
   type OpenAIChatCompletionsModelId,
   type OpenAICompletionsModelId,
   type OpenAIEmbeddingsModelId,

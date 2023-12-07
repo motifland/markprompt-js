@@ -194,11 +194,15 @@ export const DEFAULT_MARKPROMPT_OPTIONS = {
     tabLabel: 'Ask AI',
     placeholder: 'Ask AI…',
     history: true,
+    errorText:
+      'Sorry, it looks like the bot is having a hard time! Please try again in a few minutes.',
   },
   prompt: {
     label: 'Ask AI',
     tabLabel: 'Ask AI',
     placeholder: 'Ask AI…',
+    errorText:
+      'Sorry, it looks like the bot is having a hard time! Please try again in a few minutes.',
   },
   references: {
     loadingText: 'Fetching relevant pages…',

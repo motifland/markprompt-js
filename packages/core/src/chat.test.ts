@@ -14,7 +14,7 @@ import { DEFAULT_SUBMIT_CHAT_OPTIONS, submitChat } from './index.js';
 
 const encoder = new TextEncoder();
 let markpromptData: unknown = '';
-let markpromptDebug = '';
+const markpromptDebug = '';
 let response: string[] = [];
 let status = 200;
 let request: RestRequest;
@@ -50,9 +50,6 @@ const server = setupServer(
 );
 
 describe('submitChat', () => {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const consoleMock = vi.spyOn(console, 'debug').mockImplementation(() => {});
-
   const onAnswerChunk = vi.fn().mockReturnValue(true);
   const onReferences = vi.fn();
   const onPromptId = vi.fn();
@@ -290,32 +287,6 @@ describe('submitChat', () => {
     expect(onError).not.toHaveBeenCalled();
   });
 
-  test('logs debug info', async () => {
-    const onAnswerChunk = vi.fn();
-    const onReferences = vi.fn();
-    const onPromptId = vi.fn();
-    const onError = vi.fn();
-
-    markpromptDebug = 'test';
-
-    await submitChat(
-      [{ content: 'How much is 1+2?', role: 'user' }],
-      'testKey',
-      onAnswerChunk,
-      onReferences,
-      onConversationId,
-      onPromptId,
-      onError,
-      {},
-      true,
-    );
-
-    expect(request).toBeDefined();
-
-    // eslint-disable-next-line no-console
-    expect(consoleMock).toHaveBeenCalledWith(JSON.stringify('test', null, 2));
-  });
-
   test('expect onError to be called when an error occurs', async () => {
     const mockFetch = vi.spyOn(global, 'fetch').mockImplementation(() => {
       throw new Error('test');
@@ -332,6 +303,32 @@ describe('submitChat', () => {
         onReferences,
         onPromptId,
         onError,
+      );
+
+      expect(request).toBeDefined();
+      expect(onError).toHaveBeenCalledWith(new Error('test'));
+    } finally {
+      mockFetch.mockRestore();
+    }
+  });
+
+  test('expect to log the error when debug is enabled and an error occurs', async () => {
+    const mockFetch = vi.spyOn(global, 'fetch').mockImplementation(() => {
+      throw new Error('test');
+    });
+
+    try {
+      response = ['According to my calculator ', '1 + 2 = 3'];
+
+      await submitChat(
+        [{ content: 'How much is 1+2?', role: 'user' }],
+        'testKey',
+        onAnswerChunk,
+        onConversationId,
+        onReferences,
+        onPromptId,
+        onError,
+        { debug: true },
       );
 
       expect(request).toBeDefined();

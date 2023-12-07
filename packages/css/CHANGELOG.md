@@ -1,5 +1,17 @@
 # @markprompt/css
 
+## 0.18.0
+
+### Minor Changes
+
+- [#240](https://github.com/motifland/markprompt-js/pull/240) [`2b97082`](https://github.com/motifland/markprompt-js/commit/2b970823f2fe23fa95cf7e13f91822fad11a2acd) Thanks [@nickrttn](https://github.com/nickrttn)! - Show configurable error messages to users when upstream outages occur
+
+## 0.17.3
+
+### Patch Changes
+
+- [#237](https://github.com/motifland/markprompt-js/pull/237) [`42f059f`](https://github.com/motifland/markprompt-js/commit/42f059ff58721760fd850d942cb9d5e143f1b8c3) Thanks [@michaelfester](https://github.com/michaelfester)! - Fix CSS flex-start
+
 ## 0.17.2
 
 ### Patch Changes

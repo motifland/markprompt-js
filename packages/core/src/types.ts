@@ -3,23 +3,34 @@ import type { DocSearchHit } from './docsearch.js';
 export type RequiredKeys<T, K extends keyof T> = Required<Pick<T, K>> &
   Omit<T, K>;
 
+export const OPENAI_CHAT_COMPLETIONS_MODELS = [
+  'gpt-3.5-turbo',
+  'gpt-4-1106-preview',
+  'gpt-4-32k',
+  'gpt-4',
+] as const;
+
 export type OpenAIChatCompletionsModelId =
-  | 'gpt-4'
-  | 'gpt-4-32k'
-  | 'gpt-3.5-turbo';
+  (typeof OPENAI_CHAT_COMPLETIONS_MODELS)[number];
+
+export const OPENAI_COMPLETIONS_MODELS = [
+  'ada',
+  'babbage',
+  'curie',
+  'davinci',
+  'text-ada-001',
+  'text-babbage-001',
+  'text-curie-001',
+  'text-davinci-002',
+  'text-davinci-003',
+] as const;
 
 export type OpenAICompletionsModelId =
-  | 'text-davinci-003'
-  | 'text-davinci-002'
-  | 'text-curie-001'
-  | 'text-babbage-001'
-  | 'text-ada-001'
-  | 'davinci'
-  | 'curie'
-  | 'babbage'
-  | 'ada';
+  (typeof OPENAI_COMPLETIONS_MODELS)[number];
 
-export type OpenAIEmbeddingsModelId = 'text-embedding-ada-002';
+export const OPENAI_EMBEDDINGS_MODEL = 'text-embedding-ada-002' as const;
+
+export type OpenAIEmbeddingsModelId = typeof OPENAI_EMBEDDINGS_MODEL;
 
 export type OpenAIModelId =
   | OpenAIChatCompletionsModelId
@@ -88,4 +99,10 @@ export interface AlgoliaDocSearchResultsResponse {
 
 export interface PromptFeedback {
   vote: '1' | '-1';
+}
+
+export interface ChatCompletionMetadata {
+  conversationId?: string;
+  promptId?: string;
+  references?: FileSectionReference[];
 }

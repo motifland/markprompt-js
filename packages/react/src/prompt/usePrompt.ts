@@ -32,6 +32,7 @@ export interface UsePromptOptions {
 
 export interface UsePromptResult {
   answer: string;
+  error?: string;
   prompt: string;
   promptId?: string;
   references: FileSectionReference[];
@@ -60,6 +61,7 @@ export function usePrompt({
   const [references, setReferences] = useState<FileSectionReference[]>([]);
   const [prompt, setPrompt] = useState<string>('');
   const [promptId, setPromptId] = useState<string>();
+  const [error, setError] = useState<string | undefined>();
 
   const { ref: controllerRef, abort } = useAbortController();
 
@@ -86,6 +88,7 @@ export function usePrompt({
       setReferences([]);
       setPromptId(undefined);
       setState('preload');
+      setError(undefined);
 
       const controller = new AbortController();
       controllerRef.current = controller;
@@ -106,10 +109,7 @@ export function usePrompt({
         (error) => {
           // ignore abort errors
           if (isAbortError(error)) return;
-
-          // todo: surface errors to the user
-          // eslint-disable-next-line no-console
-          console.error(error);
+          setError(error.message);
         },
         {
           ...promptOptions,
@@ -135,6 +135,7 @@ export function usePrompt({
   return useMemo(
     () => ({
       answer,
+      error,
       prompt,
       promptId,
       references,
@@ -147,6 +148,7 @@ export function usePrompt({
     }),
     [
       answer,
+      error,
       prompt,
       promptId,
       references,

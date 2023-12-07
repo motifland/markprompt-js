@@ -23,7 +23,7 @@ import type { View } from '../useViews.js';
 
 interface ChatViewFormProps {
   activeView?: View;
-  chatOptions: MarkpromptOptions['chat'];
+  chatOptions: NonNullable<MarkpromptOptions['chat']>;
 }
 
 export function ChatViewForm(props: ChatViewFormProps): ReactElement {
@@ -39,6 +39,7 @@ export function ChatViewForm(props: ChatViewFormProps): ReactElement {
     (state) => state.regenerateLastAnswer,
   );
   const conversations = useChatStore(selectProjectConversations);
+  const error = useChatStore((state) => state.error);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = useCallback(
     (event) => {
@@ -88,22 +89,30 @@ export function ChatViewForm(props: ChatViewFormProps): ReactElement {
 
   return (
     <BaseMarkprompt.Form className={'MarkpromptForm'} onSubmit={handleSubmit}>
-      <BaseMarkprompt.Prompt
-        ref={inputRef}
-        className="MarkpromptPrompt"
-        name="markprompt-prompt"
-        type="text"
-        autoFocus
-        placeholder={chatOptions?.placeholder}
-        labelClassName="MarkpromptPromptLabel"
-        value={prompt}
-        onChange={(event) => setPrompt(event.target.value)}
-        label={
-          <AccessibleIcon.Root label={chatOptions!.label!}>
-            <SparklesIcon className="MarkpromptSearchIcon" />
-          </AccessibleIcon.Root>
-        }
-      />
+      <div className="MarkpromptPromptWrapper">
+        <BaseMarkprompt.Prompt
+          ref={inputRef}
+          className="MarkpromptPrompt"
+          name="markprompt-prompt"
+          type="text"
+          autoFocus
+          placeholder={chatOptions?.placeholder}
+          labelClassName="MarkpromptPromptLabel"
+          value={prompt}
+          onChange={(event) => setPrompt(event.target.value)}
+          label={
+            <AccessibleIcon.Root label={chatOptions!.label!}>
+              <SparklesIcon className="MarkpromptSearchIcon" />
+            </AccessibleIcon.Root>
+          }
+        />
+      </div>
+
+      {error && (
+        <BaseMarkprompt.ErrorMessage className="MarkpromptErrorMessage">
+          {chatOptions.errorText}
+        </BaseMarkprompt.ErrorMessage>
+      )}
 
       <div className="MarkpromptChatActions">
         {lastMessageState && lastMessageState !== 'indeterminate' && (

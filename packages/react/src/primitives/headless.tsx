@@ -559,6 +559,21 @@ const SearchResult = forwardRef<HTMLLIElement, SearchResultProps>(
 );
 SearchResult.displayName = 'Markprompt.SearchResult';
 
+interface ErrorMessageProps {
+  className?: string;
+  children: ReactNode;
+}
+
+function ErrorMessage(props: ErrorMessageProps): ReactElement {
+  const { className, children } = props;
+  return (
+    <div className={className}>
+      <p>{children}</p>
+    </div>
+  );
+}
+ErrorMessage.displayName = 'Markprompt.ErrorMessage';
+
 export {
   Answer,
   AutoScroller,
@@ -566,6 +581,7 @@ export {
   Content,
   Description,
   DialogTrigger,
+  ErrorMessage,
   Form,
   Overlay,
   PlainContent,
@@ -582,6 +598,7 @@ export {
   type ContentProps,
   type DescriptionProps,
   type DialogTriggerProps,
+  type ErrorMessageProps,
   type FormProps,
   type OverlayProps,
   type PortalProps,

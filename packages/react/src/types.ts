@@ -144,6 +144,11 @@ export interface MarkpromptOptions {
      **/
     placeholder?: string;
     /**
+     * Default error text
+     * @default "Sorry, it looks like the bot is having a hard time! Please try again in a few minutes."
+     */
+    errorText?: string;
+    /**
      * Show sender info, like avatar
      * @default true
      **/
@@ -184,6 +189,11 @@ export interface MarkpromptOptions {
      * Default (empty) view
      */
     defaultView?: DefaultViewProps;
+    /**
+     * Default error text
+     * @default "Sorry, it looks like the bot is having a hard time! Please try again in a few minutes."
+     */
+    errorText?: string;
   };
   references?: {
     /**

@@ -129,8 +129,10 @@ All options are optional.
 - `sectionsMatchCount` (`number`): The number of sections to include in the
   prompt context
 - `sectionsMatchThreshold` (`number`): The similarity threshold between the
-  input question and selected sections
+- `sectionsScope` (`number`): When a section is matched, extend the context to the parent section. For instance, if a section has level 3 and `sectionsScope` is set to 1, include the content of the entire parent section of level 1. If 0, this includes the entire file.
 - `signal` (`AbortSignal`): AbortController signal
+- `tools`: (`OpenAI.ChatCompletionTool[]`): A list of tools the model may call
+- `tool_choice`: (`OpenAI.ChatCompletionToolChoiceOption`): Controls which (if any) function is called by the model
 
 #### Returns
 
@@ -179,13 +181,13 @@ A promise that resolves when the feedback is submitted. Has no return value.
 
 ## Community
 
-- [Twitter](https://twitter.com/markprompt)
+- [X](https://x.com/markprompt)
 - [Discord](https://discord.gg/MBMh4apz6X)
 
 ## Authors
 
 This library is created by the team behind [Markprompt](https://markprompt.com)
-([@markprompt](https://twitter.com/markprompt)).
+([@markprompt](https://x.com/markprompt)).
 
 ## License
 

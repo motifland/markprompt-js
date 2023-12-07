@@ -66,14 +66,15 @@ describe('usePrompt', () => {
 
     expect(result.current).toStrictEqual({
       abort: expect.any(Function),
-      answer: '',
-      prompt: '',
-      references: [],
-      promptId: undefined,
-      state: 'indeterminate',
-      setPrompt: expect.any(Function),
-      submitFeedback: expect.any(Function),
       abortFeedbackRequest: expect.any(Function),
+      answer: '',
+      error: undefined,
+      prompt: '',
+      promptId: undefined,
+      references: [],
+      setPrompt: expect.any(Function),
+      state: 'indeterminate',
+      submitFeedback: expect.any(Function),
       submitPrompt: expect.any(Function),
     } satisfies UsePromptResult);
   });

@@ -55,6 +55,7 @@ export function PromptView(props: PromptViewProps): ReactElement {
   const {
     abort,
     answer,
+    error,
     submitPrompt,
     setPrompt,
     prompt,
@@ -100,29 +101,37 @@ export function PromptView(props: PromptViewProps): ReactElement {
   return (
     <div className="MarkpromptPromptView">
       <BaseMarkprompt.Form className="MarkpromptForm" onSubmit={handleSubmit}>
-        <BaseMarkprompt.Prompt
-          ref={inputRef}
-          className="MarkpromptPrompt"
-          name="markprompt-prompt"
-          onChange={handleChange}
-          value={prompt}
-          type="text"
-          placeholder={
-            promptOptions?.placeholder ??
-            DEFAULT_MARKPROMPT_OPTIONS.prompt!.placeholder!
-          }
-          labelClassName="MarkpromptPromptLabel"
-          label={
-            <AccessibleIcon.Root
-              label={
-                promptOptions?.label ??
-                DEFAULT_MARKPROMPT_OPTIONS.prompt!.label!
-              }
-            >
-              <SparklesIcon className="MarkpromptSearchIcon" />
-            </AccessibleIcon.Root>
-          }
-        />
+        <div className="MarkpromptPromptWrapper">
+          <BaseMarkprompt.Prompt
+            ref={inputRef}
+            className="MarkpromptPrompt"
+            name="markprompt-prompt"
+            onChange={handleChange}
+            value={prompt}
+            type="text"
+            placeholder={
+              promptOptions?.placeholder ??
+              DEFAULT_MARKPROMPT_OPTIONS.prompt!.placeholder!
+            }
+            labelClassName="MarkpromptPromptLabel"
+            label={
+              <AccessibleIcon.Root
+                label={
+                  promptOptions?.label ??
+                  DEFAULT_MARKPROMPT_OPTIONS.prompt!.label!
+                }
+              >
+                <SparklesIcon className="MarkpromptSearchIcon" />
+              </AccessibleIcon.Root>
+            }
+          />
+        </div>
+
+        {error && (
+          <BaseMarkprompt.ErrorMessage className="MarkpromptErrorMessage">
+            {promptOptions.errorText}
+          </BaseMarkprompt.ErrorMessage>
+        )}
       </BaseMarkprompt.Form>
 
       <AnswerContainer

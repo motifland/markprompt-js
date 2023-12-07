@@ -1,6 +1,6 @@
 {
   "name": "@markprompt/core",
-  "version": "0.17.0",
+  "version": "0.19.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/motifland/markprompt-js.git",
@@ -21,7 +21,11 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.20.0",
+    "@types/lodash-es": "^4.17.12",
     "defaults": "^3.0.0",
+    "eventsource-parser": "^1.1.1",
+    "lodash-es": "^4.17.21",
+    "openai": "^4.20.1",
     "type-fest": "^4.6.0"
   }
 }

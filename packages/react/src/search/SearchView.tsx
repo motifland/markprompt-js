@@ -174,23 +174,25 @@ export function SearchView(props: SearchViewProps): ReactElement {
   return (
     <div className="MarkpromptSearchView">
       <BaseMarkprompt.Form className="MarkpromptForm" onSubmit={handleSubmit}>
-        <BaseMarkprompt.Prompt
-          ref={inputRef}
-          className="MarkpromptPrompt"
-          name={searchInputName}
-          placeholder={searchOptions?.placeholder}
-          labelClassName="MarkpromptPromptLabel"
-          value={searchQuery}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          aria-controls="markprompt-search-results"
-          aria-activedescendant={activeSearchResult?.id}
-          label={
-            <AccessibleIcon.Root label={searchOptions?.label}>
-              <SearchIcon className="MarkpromptSearchIcon" />
-            </AccessibleIcon.Root>
-          }
-        />
+        <div className="MarkpromptPromptWrapper">
+          <BaseMarkprompt.Prompt
+            ref={inputRef}
+            className="MarkpromptPrompt"
+            name={searchInputName}
+            placeholder={searchOptions?.placeholder}
+            labelClassName="MarkpromptPromptLabel"
+            value={searchQuery}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            aria-controls="markprompt-search-results"
+            aria-activedescendant={activeSearchResult?.id}
+            label={
+              <AccessibleIcon.Root label={searchOptions?.label}>
+                <SearchIcon className="MarkpromptSearchIcon" />
+              </AccessibleIcon.Root>
+            }
+          />
+        </div>
       </BaseMarkprompt.Form>
 
       <SearchResultsContainer

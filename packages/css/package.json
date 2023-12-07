@@ -1,6 +1,6 @@
 {
   "name": "@markprompt/css",
-  "version": "0.17.2",
+  "version": "0.18.0",
   "description": "Common CSS for Markprompt components",
   "license": "MIT",
   "repository": {

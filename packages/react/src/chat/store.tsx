@@ -57,6 +57,8 @@ export interface ChatStoreState {
   abort?: () => void;
   projectKey: string;
   conversationId?: string;
+  error?: string;
+  setError: (error?: string) => void;
   setConversationId: (conversationId: string) => void;
   selectConversation: (conversationId?: string) => void;
   messages: ChatViewMessage[];
@@ -113,6 +115,12 @@ export const createChatStore = ({
             [projectKey]: [],
           },
           messagesByConversationId: {},
+          error: undefined,
+          setError: (error?: string) => {
+            set((state) => {
+              state.error = error;
+            });
+          },
           setConversationId: (conversationId: string) => {
             set((state) => {
               // set the conversation id for this session
@@ -191,6 +199,8 @@ export const createChatStore = ({
           },
           submitChat: (prompt: string) => {
             const id = crypto.randomUUID();
+
+            get().setError(undefined);
 
             set((state) => {
               state.messages.push({
@@ -273,7 +283,7 @@ export const createChatStore = ({
                 if (isAbortError(error)) return;
 
                 // eslint-disable-next-line no-console
-                console.error(error);
+                get().setError(error.message);
               },
               {
                 conversationId: get().conversationId,

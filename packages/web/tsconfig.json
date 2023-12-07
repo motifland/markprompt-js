@@ -23,8 +23,8 @@
     "outDir": "dist/",
     "rootDir": "./src",
     "paths": {
-      "react": ["../../node_modules/preact/compat/"],
-      "react-dom": ["../../node_modules/preact/compat/"],
+      "react": ["./node_modules/preact/compat"],
+      "react-dom": ["./node_modules/preact/compat"],
       "@markprompt/react": ["../react/src/"],
       "@markprompt/core": ["../core/src/"]
     }

@@ -413,13 +413,13 @@ The full documentation for `@markprompt/web` can be found on the
 
 ## Community
 
-- [Twitter](https://twitter.com/markprompt)
+- [X](https://x.com/markprompt)
 - [Discord](https://discord.gg/MBMh4apz6X)
 
 ## Authors
 
 This library is created by the team behind [Markprompt](https://markprompt.com)
-([@markprompt](https://twitter.com/markprompt)).
+([@markprompt](https://x.com/markprompt)).
 
 ## License
 
