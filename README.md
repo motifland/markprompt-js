@@ -60,7 +60,6 @@ To use the Markprompt platform as is, please refer to the
 ## Community
 
 - [X](https://x.com/markprompt)
-- [Discord](https://discord.gg/MBMh4apz6X)
 
 ## Authors
 
