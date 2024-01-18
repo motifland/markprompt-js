@@ -680,7 +680,7 @@ describe('submitChatGenerator', () => {
       object: 'chat.completion',
       id: crypto.randomUUID(),
       created: Date.now(),
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4-1106-preview',
       choices: [
         {
           index: 0,

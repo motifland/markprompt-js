@@ -47,7 +47,7 @@ const projectKey = 'YOUR-PROJECT-KEY';
 
 // Optional parameters, defaults displayed
 const options = {
-  model: 'gpt-3.5-turbo', // Supports all OpenAI models
+  model: 'gpt-4-1106-preview', // Supports all OpenAI models
   iDontKnowMessage: 'Sorry, I am not sure how to answer that.',
   apiUrl: 'https://api.markprompt.com/chat', // Or your own chat API endpoint
 };

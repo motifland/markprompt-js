@@ -52,7 +52,7 @@ export function encodeData(text: string): string {
 export function getChunk(
   content: string | null,
   index: number,
-  model = 'gpt-3.5-turbo',
+  model = 'gpt-4-1106-preview',
   isLast?: boolean,
 ): string {
   return JSON.stringify({

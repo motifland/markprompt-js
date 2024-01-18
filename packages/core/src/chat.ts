@@ -60,7 +60,7 @@ export interface SubmitChatOptions {
   iDontKnowMessage?: string;
   /**
    * The OpenAI model to use
-   * @default "gpt-3.5-turbo"
+   * @default "gpt-4-1106-preview"
    **/
   model?: OpenAIModelId;
   /**
@@ -123,7 +123,7 @@ export const DEFAULT_SUBMIT_CHAT_OPTIONS = {
   frequencyPenalty: 0,
   iDontKnowMessage: 'Sorry, I am not sure how to answer that.',
   maxTokens: 500,
-  model: 'gpt-3.5-turbo',
+  model: 'gpt-4-1106-preview',
   presencePenalty: 0,
   sectionsMatchCount: 5,
   sectionsMatchThreshold: 0.5,
@@ -321,7 +321,7 @@ export interface SubmitChatGeneratorOptions {
   excludeFromInsights?: boolean;
   /**
    * The OpenAI model to use
-   * @default "gpt-3.5-turbo"
+   * @default "gpt-4-1106-preview"
    **/
   model?: OpenAIModelId;
   /**
@@ -397,7 +397,7 @@ export const DEFAULT_SUBMIT_CHAT_GENERATOR_OPTIONS = {
   frequencyPenalty: 0,
   iDontKnowMessage: 'Sorry, I am not sure how to answer that.',
   maxTokens: 500,
-  model: 'gpt-3.5-turbo',
+  model: 'gpt-4-1106-preview',
   presencePenalty: 0,
   sectionsMatchCount: 5,
   sectionsMatchThreshold: 0.5,

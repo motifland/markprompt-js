@@ -21,6 +21,7 @@ if (el && el instanceof HTMLElement) {
     feedback: { enabled: true },
     search: { enabled: true },
     chat: {
+      apiUrl: import.meta.env.VITE_MARKPROMPT_API_URL,
       enabled: true,
       defaultView: {
         message:

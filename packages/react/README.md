@@ -95,7 +95,7 @@ The pre-built Markprompt component. It accepts the following props:
 - `chat.apiUrl` (`string`): URL at which to fetch completions. (Default:
   `https://api.markprompt.com/chat`)
 - `chat.iDontKnowMessage` (`string`): Message returned when the model does not have an answer. (Default: `Sorry, I am not sure how to answer that.`)
-- `chat.model` (`string`): The OpenAI model to use. (Default: `gpt-3.5-turbo`)
+- `chat.model` (`string`): The OpenAI model to use. (Default: `gpt-4-1106-preview`)
 - `chat.systemPrompt` (`string`): The prompt template. (Default:
   `You are a very enthusiastic company representative who loves to help people!`)
 - `chat.temperature` (`number`): The model temperature. (Default: `0.1`)
@@ -127,7 +127,7 @@ The pre-built Markprompt component. It accepts the following props:
 - `prompt.apiUrl` (`string`): URL at which to fetch completions. (Default:
   `https://api.markprompt.com/v1/completions`)
 - `prompt.iDontKnowMessage` (`string`): Message returned when the model does not have an answer. (Default: `Sorry, I am not sure how to answer that.`)
-- `prompt.model` (`string`): The OpenAI model to use. (Default: `gpt-3.5-turbo`)
+- `prompt.model` (`string`): The OpenAI model to use. (Default: `gpt-4-1106-preview`)
 - `prompt.systemPrompt` (`string`): The prompt template. (Default:
   `You are a very enthusiastic company representative who loves to help people!`)
 - `prompt.temperature` (`number`): The model temperature. (Default: `0.1`)
@@ -212,7 +212,7 @@ accepts the following props:
 - `chatOptions.iDontKnowMessage` (`string`): Message returned when the model
   does not have an answer. (Default: `Sorry, I am not sure how to answer that.`)
 - `chatOptions.model` (`string`): The OpenAI model to use. (Default:
-  `gpt-3.5-turbo`)
+  `gpt-4-1106-preview`)
 - `chatOptions.systemPrompt` (`string`): The prompt template. (Default:
   `You are a very enthusiastic company representative who loves to help people!`)
 - `chatOptions.temperature` (`number`): The model temperature. (Default: `0.1`)
@@ -275,7 +275,7 @@ It accepts the following props:
 - `promptOptions.iDontKnowMessage` (`string`): Message returned when the model
   does not have an answer. (Default: `Sorry, I am not sure how to answer that.`)
 - `promptOptions.model` (`string`): The OpenAI model to use. (Default:
-  `gpt-3.5-turbo`)
+  `gpt-4-1106-preview`)
 - `promptOptions.systemPrompt` (`string`): The prompt template. (Default:
   `You are a very enthusiastic company representative who loves to help people!`)
 - `promptOptions.temperature` (`number`): The model temperature. (Default:
@@ -462,7 +462,7 @@ Create a chat prompt. It accepts the following options:
     - `chatOptions.maxTokens` (`number`): The max number of tokens to include in
       the response. (Default: `500`)
     - `chatOptions.model` (`string`): The OpenAI model to use. (Default:
-      `gpt-3.5-turbo`)
+      `gpt-4-1106-preview`)
     - `chatOptions.presencePenalty` (`number`): The model presence penalty.
       (Default: `0`)
     - `chatOptions.sectionsMatchCount` (`number`): The number of sections to
@@ -555,7 +555,7 @@ Create a prompt. It accepts the following options:
     - `promptOptions.maxTokens` (`number`): The max number of tokens to include
       in the response. (Default: `500`)
     - `promptOptions.model` (`string`): The OpenAI model to use. (Default:
-      `gpt-3.5-turbo`)
+      `gpt-4-1106-preview`)
     - `promptOptions.presencePenalty` (`number`): The model presence penalty.
       (Default: `0`)
     - `promptOptions.sectionsMatchCount` (`number`): The number of sections to
