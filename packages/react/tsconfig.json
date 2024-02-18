@@ -1,6 +1,4 @@
 {
-  "references": [{ "path": "../core" }],
-  "include": ["src/"],
   "compilerOptions": {
     // base
     "esModuleInterop": true,
@@ -32,4 +30,6 @@
       "@markprompt/core": ["../core/src"],
     },
   },
+  "include": ["src/"],
+  "references": [{ "path": "../core" }],
 }

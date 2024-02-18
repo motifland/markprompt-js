@@ -8,15 +8,19 @@ import { getErrorMessage, isAbortError } from './utils.js';
 
 export interface SubmitSearchQueryOptions {
   /**
-   * Maximum amount of results to return
-   * @default 8
-   **/
-  limit?: number;
-  /**
    * URL at which to fetch search results
    * @default "https://api.markprompt.com/search"
    **/
   apiUrl?: string;
+  /**
+   * Markprompt client ID
+   */
+  clientId?: string;
+  /**
+   * Maximum amount of results to return
+   * @default 8
+   **/
+  limit?: number;
   /**
    * Custom provider configuration
    * @default undefined
@@ -27,6 +31,10 @@ export interface SubmitSearchQueryOptions {
    * @default undefined
    **/
   signal?: AbortSignal;
+  /**
+   * User data to attach to the search request
+   */
+  userData?: { [key: string]: unknown };
 }
 
 export interface AlgoliaProvider {
@@ -47,11 +55,17 @@ export interface AlgoliaProvider {
    * Algolia search parameters, like `facetFilters`
    **/
   searchParameters?: SearchOptions;
+  /**
+   * User data to attach to the feedback.
+   * @default undefined
+   **/
+  userData?: { [key: string]: unknown };
 }
 
 export const DEFAULT_SUBMIT_SEARCH_QUERY_OPTIONS: SubmitSearchQueryOptions = {
-  limit: 8,
   apiUrl: 'https://api.markprompt.com/search',
+  clientId: crypto.randomUUID(),
+  limit: 8,
 };
 
 /**

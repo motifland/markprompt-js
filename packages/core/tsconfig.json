@@ -17,8 +17,8 @@
     "rootDir": "src/",
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true,
     "composite": true,
+    "declarationMap": true,
 
     // runtime
     "lib": ["dom", "dom.iterable", "es2023"],

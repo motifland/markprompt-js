@@ -10,7 +10,7 @@ import { useAbortController } from '../useAbortController.js';
 
 export interface UseFeedbackOptions {
   /** Enable and configure feedback functionality */
-  feedbackOptions?: Omit<SubmitFeedbackOptions, 'signal'>;
+  feedbackOptions: Omit<SubmitFeedbackOptions, 'signal'>;
   /** Markprompt project key */
   projectKey: string;
   /** The current list of messages */

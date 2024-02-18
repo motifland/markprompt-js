@@ -202,16 +202,16 @@ export interface ChatStoreState {
     )[],
   ) => void;
   submitToolCalls: (message: ChatViewMessage) => Promise<void>;
-  options?: UserConfigurableOptions;
+  options: UserConfigurableOptions;
   setOptions: (options: UserConfigurableOptions) => void;
   regenerateLastAnswer: () => void;
 }
 
 export interface CreateChatOptions {
+  chatOptions: UserConfigurableOptions;
   debug?: boolean;
-  projectKey: string;
   persistChatHistory?: boolean;
-  chatOptions?: UserConfigurableOptions;
+  projectKey: string;
 }
 
 /**
@@ -414,12 +414,12 @@ export const createChatStore = ({
             }
 
             const options = {
+              debug,
               conversationId: get().conversationId,
               signal: controller.signal,
-              debug,
               ...get().options,
               tools: get().options?.tools?.map((x) => x.tool),
-            };
+            } satisfies SubmitChatOptions;
 
             // do the chat completion request
             try {
@@ -681,7 +681,7 @@ type ChatStore = ReturnType<typeof createChatStore>;
 export const ChatContext = createContext<ChatStore | null>(null);
 
 interface ChatProviderProps {
-  chatOptions: MarkpromptOptions['chat'];
+  chatOptions: NonNullable<MarkpromptOptions['chat']>;
   children: ReactNode;
   debug?: boolean;
   projectKey: string;
@@ -694,10 +694,10 @@ export function ChatProvider(props: ChatProviderProps): JSX.Element {
 
   if (!store.current) {
     store.current = createChatStore({
-      projectKey,
       chatOptions,
       debug,
       persistChatHistory: chatOptions?.history,
+      projectKey,
     });
   }
 

@@ -284,7 +284,7 @@ describe('ChatView', () => {
       <ChatViewWithProvider
         projectKey={crypto.randomUUID()}
         chatOptions={{
-          tool_choice: 'auto',
+          toolChoice: 'auto',
           tools: [
             {
               call: do_a_thing,
@@ -342,7 +342,7 @@ describe('ChatView', () => {
       <ChatViewWithProvider
         projectKey={crypto.randomUUID()}
         chatOptions={{
-          tool_choice: 'auto',
+          toolChoice: 'auto',
           tools: [
             {
               call: do_a_thing,
@@ -406,7 +406,7 @@ describe('ChatView', () => {
       <ChatViewWithProvider
         projectKey={crypto.randomUUID()}
         chatOptions={{
-          tool_choice: 'auto',
+          toolChoice: 'auto',
           tools: [
             {
               call: do_a_thing,
@@ -455,7 +455,7 @@ describe('ChatView', () => {
       <ChatViewWithProvider
         projectKey={crypto.randomUUID()}
         chatOptions={{
-          tool_choice: 'auto',
+          toolChoice: 'auto',
           tools: [
             {
               call: do_a_thing,

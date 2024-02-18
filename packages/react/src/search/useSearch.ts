@@ -23,7 +23,7 @@ export type SearchLoadingState = 'indeterminate' | 'preload' | 'done';
 export interface UseSearchOptions {
   debug?: boolean;
   projectKey: string;
-  searchOptions?: Omit<SubmitSearchQueryOptions, 'signal'>;
+  searchOptions: Omit<SubmitSearchQueryOptions, 'signal'>;
 }
 
 export interface UseSearchResult {
@@ -122,7 +122,7 @@ export function useSearch({
         }
       });
     },
-    [searchOptions, abort, controllerRef, projectKey, debug],
+    [abort, controllerRef, searchOptions, projectKey, debug],
   );
 
   return {

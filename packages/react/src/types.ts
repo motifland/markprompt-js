@@ -123,7 +123,7 @@ export interface MarkpromptOptions {
      **/
     text?: string;
   };
-  feedback?: SubmitFeedbackOptions & {
+  feedback?: Omit<SubmitFeedbackOptions, 'clientId' | 'userData'> & {
     /**
      * Enable feedback functionality, shows a thumbs up/down button after a
      * prompt was submitted.
@@ -149,7 +149,7 @@ export interface MarkpromptOptions {
    * Enable and configure chat functionality. Allows users to have a conversation with an assistant.
    * Enabling chat functionality will disable prompt functionality.
    */
-  chat?: UserConfigurableOptions & {
+  chat?: Omit<UserConfigurableOptions, 'clientId' | 'userData'> & {
     /**
      * Show a chat-like prompt input allowing for conversation-style interaction
      * rather than single question prompts.
@@ -248,7 +248,7 @@ export interface MarkpromptOptions {
   /**
    * Enable and configure search functionality
    */
-  search?: SubmitSearchQueryOptions & {
+  search?: Omit<SubmitSearchQueryOptions, 'clientId' | 'userData'> & {
     /**
      * Enable search
      * @default false
@@ -363,4 +363,9 @@ export interface MarkpromptOptions {
    * @default false
    **/
   debug?: boolean;
+  /**
+   * User data to attach to requests to the Markprompt API.
+   * @default undefined
+   **/
+  userData?: { [key: string]: unknown };
 }
