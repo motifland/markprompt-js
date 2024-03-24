@@ -140,9 +140,9 @@ interface MarkpromptOptions {
      * @default undefined
      */
     onFeedbackSubmit?: (
-      feedback: PromptFeedback,
+      feedback: MessageFeedback,
       messages: ChatViewMessage[],
-      promptId?: string,
+      messageId?: string,
     ) => void;
   };
   /**

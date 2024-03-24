@@ -48,7 +48,7 @@ export {
   type OpenAICompletionsModelId,
   type OpenAIEmbeddingsModelId,
   type OpenAIModelId,
-  type PromptFeedback,
+  type MessageFeedback,
   type SearchResult,
   type SearchResultSection,
   type SearchResultsResponse,

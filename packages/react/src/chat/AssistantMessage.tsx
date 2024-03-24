@@ -102,16 +102,16 @@ export function AssistantMessage(props: AssistantMessageProps): JSX.Element {
               message={message.content ?? ''}
               variant="icons"
               className="MarkpromptPromptFeedback"
-              submitFeedback={(feedback, promptId) => {
-                submitFeedback(feedback, promptId);
+              submitFeedback={(feedback, messageId) => {
+                submitFeedback(feedback, messageId);
                 feedbackOptions.onFeedbackSubmit?.(
                   feedback,
                   messages,
-                  promptId,
+                  messageId,
                 );
               }}
               abortFeedbackRequest={abortFeedbackRequest}
-              promptId={message.promptId}
+              messageId={message.promptId}
               heading={feedbackOptions.heading}
               showFeedback={!!feedbackOptions?.enabled}
               showCopy={chatOptions.showCopy}

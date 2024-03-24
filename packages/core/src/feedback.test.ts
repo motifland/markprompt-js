@@ -43,8 +43,8 @@ describe('submitFeedback', () => {
   test('makes a request', async () => {
     const response = await submitFeedback(
       {
-        feedback: { vote: '1' },
-        promptId: 'test-id',
+        feedback: { vote: 1 },
+        messageId: 'test-id',
       },
       'testKey',
     );
@@ -58,8 +58,8 @@ describe('submitFeedback', () => {
     await expect(
       submitFeedback(
         {
-          feedback: { vote: '1' },
-          promptId: 'test-id',
+          feedback: { vote: 1 },
+          messageId: 'test-id',
         },
         'testKey',
       ),

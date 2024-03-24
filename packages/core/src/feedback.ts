@@ -1,18 +1,18 @@
 import defaults from 'defaults';
 
-import type { PromptFeedback } from './types.js';
+import type { MessageFeedback } from './types.js';
 
 export interface SubmitFeedbackBody {
-  /** Prompt feedback */
-  feedback: PromptFeedback;
+  /** Message feedback */
+  feedback: MessageFeedback;
   /** ID of the prompt for which feedback is being submitted. */
-  promptId: string;
+  messageId: string;
 }
 
 export interface SubmitFeedbackOptions {
   /**
    * URL to submit feedback to.
-   * @default 'https://api.markprompt.com/feedback'
+   * @default 'https://api.markprompt.com/messages'
    */
   apiUrl?: string;
   /**
@@ -25,7 +25,7 @@ export interface SubmitFeedbackOptions {
 const allowedOptionKeys = ['apiUrl', 'signal'];
 
 export const DEFAULT_SUBMIT_FEEDBACK_OPTIONS = {
-  apiUrl: 'https://api.markprompt.com/feedback',
+  apiUrl: 'https://api.markprompt.com/messages',
 } satisfies SubmitFeedbackOptions;
 
 export async function submitFeedback(
@@ -55,20 +55,13 @@ export async function submitFeedback(
   });
 
   try {
-    const response = await fetch(resolvedOptions.apiUrl + `?${params}`, {
+    const response = await fetch(resolvedOptions.apiUrl + `/${feedback.messageId}?${params}`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',
         'X-Markprompt-API-Version': '2024-03-23',
       }),
-      body: JSON.stringify({
-        ...feedback,
-        // /v1/feedback was using promptId. The new /feedback endpoint
-        // now uses messageId. We should eventually migrate everything
-        // to messageId, but now we just copy the promptId parameter
-        // to messageId, so that it works with both endpoints.
-        messageId: feedback.promptId,
-      }),
+      body: JSON.stringify(feedback.feedback),
       signal: signal,
     });
 

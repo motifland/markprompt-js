@@ -1,6 +1,6 @@
 import {
   submitFeedback as submitFeedbackToMarkprompt,
-  type PromptFeedback,
+  type MessageFeedback,
   type SubmitFeedbackOptions,
 } from '@markprompt/core';
 import { useCallback } from 'react';
@@ -18,7 +18,7 @@ export interface UseFeedbackResult {
   /** Abort any pending feedback submission */
   abort: () => void;
   /** Submit feedback for the current prompt */
-  submitFeedback: (feedback: PromptFeedback, promptId?: string) => void;
+  submitFeedback: (feedback: MessageFeedback, messageId?: string) => void;
 }
 
 export function useFeedback({
@@ -34,17 +34,17 @@ export function useFeedback({
   const { ref: controllerRef, abort } = useAbortController();
 
   const submitFeedback = useCallback(
-    async (feedback: PromptFeedback, promptId?: string) => {
+    async (feedback: MessageFeedback, messageId?: string) => {
       abort();
 
       // we need to be able to associate the feedback to a prompt
-      if (!promptId) return;
+      if (!messageId) return;
 
       const controller = new AbortController();
       controllerRef.current = controller;
 
       const promise = submitFeedbackToMarkprompt(
-        { feedback, promptId },
+        { feedback, messageId },
         projectKey,
         { ...feedbackOptions, signal: controller.signal },
       );

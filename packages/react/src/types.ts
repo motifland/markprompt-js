@@ -2,7 +2,7 @@
 import {
   type AlgoliaDocSearchHit,
   type FileSectionReference,
-  type PromptFeedback,
+  type MessageFeedback,
   type SearchResult,
   type SubmitFeedbackOptions,
   type SubmitSearchQueryOptions,
@@ -116,7 +116,7 @@ export interface FeedbackOptions {
    * @default undefined
    */
   onFeedbackSubmit?: (
-    feedback: PromptFeedback,
+    feedback: MessageFeedback,
     messages: ChatViewMessage[],
     promptId?: string,
   ) => void;

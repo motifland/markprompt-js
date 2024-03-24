@@ -1,4 +1,4 @@
-import type { PromptFeedback } from '@markprompt/core';
+import type { MessageFeedback } from '@markprompt/core';
 import { AccessibleIcon } from '@radix-ui/react-accessible-icon';
 import {
   useState,
@@ -18,7 +18,7 @@ interface FeedbackProps extends ComponentPropsWithoutRef<'aside'> {
   submitFeedback: UseFeedbackResult['submitFeedback'];
   abortFeedbackRequest: UseFeedbackResult['abort'];
   variant: 'text' | 'icons';
-  promptId?: string;
+  messageId?: string;
   showFeedback?: boolean;
   showCopy?: boolean;
 }
@@ -33,16 +33,16 @@ export function Feedback(props: FeedbackProps): ReactElement {
     submitFeedback,
     abortFeedbackRequest,
     variant,
-    promptId,
+    messageId,
     showFeedback = true,
     showCopy,
     ...divProps
   } = props;
 
-  const [feedback, setFeedback] = useState<PromptFeedback>();
+  const [feedback, setFeedback] = useState<MessageFeedback>();
 
-  function handleFeedback(feedback: PromptFeedback): void {
-    submitFeedback(feedback, promptId);
+  function handleFeedback(feedback: MessageFeedback): void {
+    submitFeedback(feedback, messageId);
     setFeedback(feedback);
   }
 
@@ -65,8 +65,8 @@ export function Feedback(props: FeedbackProps): ReactElement {
           <>
             <button
               className="MarkpromptGhostThumbButton"
-              onClick={() => handleFeedback({ vote: '1' })}
-              data-active={feedback?.vote === '1'}
+              onClick={() => handleFeedback({ vote: 1 })}
+              data-active={feedback?.vote === 1}
             >
               {variant === 'text' && 'Yes'}
               {variant === 'icons' && (
@@ -77,8 +77,8 @@ export function Feedback(props: FeedbackProps): ReactElement {
             </button>
             <button
               className="MarkpromptGhostThumbButton"
-              onClick={() => handleFeedback({ vote: '-1' })}
-              data-active={feedback?.vote === '-1'}
+              onClick={() => handleFeedback({ vote: -1 })}
+              data-active={feedback?.vote === -1}
               style={{ animationDelay: '100ms' }}
             >
               {variant === 'text' && 'No'}

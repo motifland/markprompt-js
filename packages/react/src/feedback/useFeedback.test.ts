@@ -57,19 +57,19 @@ describe('useFeedback', () => {
 
     const { submitFeedback } = result.current;
 
-    await submitFeedback({ vote: '1' }, 'prompt-id');
+    await submitFeedback({ vote: 1 }, 'message-id');
 
     await waitFor(() => expect(endpointHits).toBe(1));
   });
 
-  it("doesn't submit feedback if promptId is not provided", async () => {
+  it("doesn't submit feedback if messageId is not provided", async () => {
     const { result } = renderHook(() =>
       useFeedback({ projectKey: 'TEST_PROJECT_KEY' }),
     );
 
     const { submitFeedback } = result.current;
 
-    await submitFeedback({ vote: '1' });
+    await submitFeedback({ vote: 1 });
 
     await waitFor(() => expect(endpointHits).toBe(0));
   });
@@ -81,7 +81,7 @@ describe('useFeedback', () => {
 
     const { submitFeedback, abort } = result.current;
 
-    const submitFeedbackPromise = submitFeedback({ vote: '1' }, 'prompt-id');
+    const submitFeedbackPromise = submitFeedback({ vote: 1 }, 'message-id');
 
     abort();
 
@@ -100,7 +100,7 @@ describe('useFeedback', () => {
     status = 500;
 
     expect(
-      async () => await submitFeedback({ vote: '1' }, 'prompt-id'),
+      async () => await submitFeedback({ vote: 1 }, 'message-id'),
     ).not.toThrow();
   });
 });

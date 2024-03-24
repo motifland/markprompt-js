@@ -135,8 +135,9 @@ export interface AlgoliaDocSearchResultsResponse {
   hits: AlgoliaDocSearchHit[];
 }
 
-export interface PromptFeedback {
-  vote: '1' | '-1';
+export interface MessageFeedback {
+  vote?: 1 | -1 | 0;
+  csat?: 1 | 2 | 3 | 4 | 5 | 0;
 }
 
 export interface ChatCompletionMetadata {
