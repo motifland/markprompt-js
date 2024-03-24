@@ -82,7 +82,7 @@ export async function submitSearchQuery(
       method: 'GET',
       signal: options?.signal,
       headers: new Headers({
-        'X-Markprompt-API-Version': '2023-12-01',
+        'X-Markprompt-API-Version': '2024-03-23',
       }),
     });
 
