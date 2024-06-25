@@ -1,5 +1,11 @@
 # @markprompt/react
 
+## 0.49.1
+
+### Patch Changes
+
+- [#385](https://github.com/motifland/markprompt-js/pull/385) [`6046e0a`](https://github.com/motifland/markprompt-js/commit/6046e0a76c311a8d1c1b8793655f716f336f0625) Thanks [@ethanniser](https://github.com/ethanniser)! - Pin radix dropdown to 2.0.6
+
 ## 0.49.0
 
 ### Minor Changes
